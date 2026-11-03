@@ -1,20 +1,215 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background: var(--indigo-dark) url('../../images/bg-footer.png') top center no-repeat;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer-inner {
+  width: calc(var(--container) - 30px);
+  margin: 0 auto;
+  padding: 70px 0 50px;
+  color: var(--lavender);
+  font-family: var(--body-font-family);
 }
 
-footer .footer p {
+footer .footer-inner p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+/* logo */
+footer .footer-logo {
+  text-align: center;
+  line-height: 0;
+}
+
+footer .footer-logo img {
+  width: 260px;
+}
+
+/* menu (hidden on mobile like the source) */
+footer .footer-menu {
+  display: none;
+}
+
+footer .footer-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+footer .footer-menu li {
+  display: inline-block;
+  margin: 0 29px;
+}
+
+footer .footer-menu a:any-link {
+  color: #fff;
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+footer .footer-menu a:hover {
+  color: var(--link-hover-color);
+}
+
+/* contact items: icon + title + text */
+footer .footer-contact {
+  padding-top: 60px;
+}
+
+footer .footer-contact .default-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer .footer-contact-col {
+  display: flex;
+  width: 100%;
+  padding: 0 15px;
+}
+
+footer .footer-contact-col:first-child {
+  justify-content: flex-end;
+}
+
+footer .footer-contact-item {
+  position: relative;
+  display: flex;
+  width: 74.195%;
+  padding: 30px 30px 25px;
+}
+
+footer .footer-contact-col + .footer-contact-col .footer-contact-item {
+  width: 91.963%;
+  margin-top: 30px;
+}
+
+footer .footer-contact-icon {
+  position: absolute;
+  top: 32px;
+  left: 30px;
+  line-height: 0;
+}
+
+footer .footer-contact-icon .icon {
+  width: 30px;
+  height: 30px;
+  background-color: var(--link-color);
+}
+
+footer .footer-contact-icon .icon img {
+  display: none;
+}
+
+footer .footer-contact-icon .icon-globe {
+  mask: url('../../icons/globe.svg') center / contain no-repeat;
+}
+
+footer .footer-contact-icon .icon-phone {
+  mask: url('../../icons/phone.svg') center / contain no-repeat;
+}
+
+footer .footer-contact-text {
+  padding-left: 50px;
+  font-weight: 500;
+}
+
+footer .footer-contact-text h6 {
+  margin: 0 0 5px;
+  color: var(--lavender);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+}
+
+footer .footer-contact-text p {
+  color: #fff;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+footer .footer-contact-text a:any-link {
+  color: var(--link-color);
+}
+
+/* legal */
+footer .footer-legal {
+  padding-top: 30px;
+  text-align: center;
+}
+
+footer .footer-legal p {
+  margin-bottom: 20px;
+}
+
+footer .footer-legal a:any-link {
+  color: var(--link-color);
+}
+
+footer .footer-contact-text a:hover,
+footer .footer-contact-text a:focus,
+footer .footer-legal a:hover,
+footer .footer-legal a:focus {
+  color: var(--link-hover-color);
+}
+
+/* back to top */
+footer .back-to-top {
+  position: fixed;
+  right: 40px;
+  bottom: -20px;
+  z-index: 1000;
+  width: 42px;
+  height: 45px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 6px 6px 13px 0 rgb(42 67 113 / 20%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+footer .back-to-top::before {
+  content: '';
+  display: block;
+  width: 17px;
+  height: 17px;
+  margin: 14px auto;
+  background-color: var(--teal);
+  mask: url('../../icons/arrow-up.svg') center / contain no-repeat;
+}
+
+footer .back-to-top.show {
+  bottom: 40px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+footer .back-to-top.show:hover {
+  bottom: 45px;
+  color: var(--link-color);
+}
+
+@media (width >= 768px) {
+  footer .footer-menu {
+    display: block;
+    padding-top: 65px;
+  }
+
+  footer .footer-contact-col:first-child {
+    width: 63.075%;
+  }
+
+  footer .footer-contact-col + .footer-contact-col {
+    width: 36.87%;
+  }
+
+  footer .footer-contact-col + .footer-contact-col .footer-contact-item {
+    margin-top: 0;
+  }
+
+  footer .footer-legal {
+    padding-top: 20px;
   }
 }

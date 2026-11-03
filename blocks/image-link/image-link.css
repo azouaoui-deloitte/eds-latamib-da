@@ -1,0 +1,14 @@
+.image-link .image-link-media {
+  max-width: 1024px;
+  margin: 0 auto;
+  line-height: 0;
+}
+
+.image-link .image-link-media a {
+  display: block;
+}
+
+.image-link img {
+  display: block;
+  width: 100%;
+}

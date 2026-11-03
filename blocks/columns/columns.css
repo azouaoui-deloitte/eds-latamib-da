@@ -19,15 +19,102 @@
   display: block;
 }
 
-@media (width >= 900px) {
+@media (width >= 768px) {
   .columns > div {
-    align-items: center;
     flex-direction: unset;
-    gap: 24px;
+    gap: calc(2 * var(--gutter));
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+}
+
+/* "split" section: text column + overflowing collage image with an arrow link (About) */
+main .section.split {
+  padding: 80px 0 40px;
+}
+
+main .section.split .columns p:has(+ h2) {
+  margin-bottom: 9px;
+  font-size: 12px;
+  line-height: 22.5px;
+}
+
+main .section.split .columns h2 {
+  margin-bottom: 15px;
+  font-size: 27px;
+  line-height: 38px;
+}
+
+main .section.split .columns p:not(:has(+ h2)) {
+  color: var(--text-color);
+  font-family: var(--text-font-family);
+  font-size: 18px;
+  line-height: 33.75px;
+  text-align: justify;
+}
+
+main .section.split .columns > div > div + div {
+  display: none;
+}
+
+main .section.split .columns > div > div:first-child > :last-child {
+  margin-bottom: 40px;
+}
+
+@media (width >= 768px) {
+  main .section.split .columns p:has(+ h2) {
+    font-size: 15px;
+    line-height: 28.125px;
+  }
+
+  main .section.split .columns h2 {
+    line-height: 48px;
+  }
+}
+
+@media (width >= 1025px) {
+  main .section.split {
+    padding: 70px 0;
+  }
+
+  main .section.split .columns > div > div + div {
+    display: block;
+    padding-top: 50px;
+  }
+
+  /* two 50% Elementor columns, the text one with a 70px right margin */
+  main .section.split .columns > div > div:first-child {
+    flex: 0 0 calc(var(--container) / 2 - 100px);
+    margin-right: 70px;
+  }
+
+  main .section.split .columns > div > div + div img {
+    /* widget margin -20px -360px 0 -22px: column width + 382px */
+    width: calc(var(--container) / 2 + 352px);
+    max-width: none;
+    margin: -20px 0 0 -22px;
+  }
+
+  main .section.split .columns > div > div + div p:has(img),
+  main .section.split .columns > div > div + div picture {
+    display: block;
+    margin: 0;
+    line-height: 0;
+  }
+
+  main .section.split .columns > div > div + div .button-wrapper {
+    margin: -100px 0 0 100px;
+  }
+
+  /* the source icon is followed by a space character (0.27em in Nunito Sans) */
+  main .section.split a.button.secondary::before {
+    margin-right: calc(8px + 0.27em);
+  }
+
+  main .section.split a.button.secondary:hover::before {
+    margin-right: calc(3px + 0.27em);
   }
 }

@@ -1,0 +1,81 @@
+.cta {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  background-color: var(--indigo-dark);
+}
+
+.cta .cta-background,
+.cta .cta-background > div,
+.cta .cta-background picture {
+  position: absolute;
+  inset: 0;
+}
+
+.cta .cta-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.cta .cta-content {
+  position: relative;
+}
+
+.cta .cta-content > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.cta h2 {
+  margin: 0;
+  padding: 47px 0 30px;
+  color: #fff;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+.cta .button-wrapper {
+  margin: 0;
+  padding: 0 10px;
+  line-height: 0;
+}
+
+@media (width >= 768px) {
+  .cta {
+    padding: 50px 50px 120px;
+  }
+
+  .cta .cta-content > div {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .cta h2 {
+    flex: 0 0 65%;
+    padding: 47px 0 0;
+  }
+
+  .cta .button-wrapper {
+    flex: 0 0 35%;
+    padding: 0 10px 8px;
+    text-align: right;
+  }
+}
+
+@media (width >= 1025px) {
+  .cta {
+    padding: 55px 65px 100px;
+  }
+
+  .cta h2 {
+    flex-basis: 80%;
+    font-size: 35px;
+    line-height: 60px;
+  }
+
+  .cta .button-wrapper {
+    flex-basis: 19.953%;
+  }
+}

@@ -38,6 +38,49 @@ if (window.trustedTypes && window.trustedTypes.createPolicy) {
 }
 
 /**
+ * Moves all the attributes from a given element to another given element.
+ * @param {Element} from the element to copy attributes from
+ * @param {Element} to the element to copy attributes to
+ */
+export function moveAttributes(from, to, attributes) {
+  if (!attributes) {
+    // eslint-disable-next-line no-param-reassign
+    attributes = [...from.attributes].map(({ nodeName }) => nodeName);
+  }
+  attributes.forEach((attr) => {
+    const value = from.getAttribute(attr);
+    if (value) {
+      to?.setAttribute(attr, value);
+      from.removeAttribute(attr);
+    }
+  });
+}
+
+/**
+ * Move instrumentation attributes (shared block code with the xwalk site eds-latamib).
+ * @param {Element} from the element to copy attributes from
+ * @param {Element} to the element to copy attributes to
+ */
+export function moveInstrumentation(from, to) {
+  moveAttributes(
+    from,
+    to,
+    [...from.attributes]
+      .map(({ nodeName }) => nodeName)
+      .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-')),
+  );
+}
+
+/**
+ * Site root to prefix content paths with: always empty on da.live / aem.page / aem.live
+ * (the xwalk site returns the AEM site path there).
+ * @returns {string}
+ */
+export function getContentRoot() {
+  return '';
+}
+
+/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {

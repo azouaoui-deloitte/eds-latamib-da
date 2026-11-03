@@ -1,27 +1,212 @@
+/* variants are independent rule sets */
+/* stylelint-disable no-descending-specificity */
 .cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
   gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  position: relative;
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+.cards .cards-card-body > :last-child {
+  margin-bottom: 0;
 }
 
-.cards .cards-card-image {
-  line-height: 0;
-}
-
-.cards > ul > li img {
+.cards .cards-card-image img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+}
+
+/* services (navy band): watermark initials, icon in a quarter circle, white on hover */
+.cards.services > ul {
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.cards.services > ul > li {
+  overflow: hidden;
+  padding: 43px 30px 65px;
+  background: var(--indigo);
+  color: var(--lavender);
+  transition: all 0.3s linear;
+}
+
+.cards.services .cards-card-watermark {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  color: var(--indigo-light);
+  font-family: var(--heading-font-family);
+  font-size: 100px;
+  font-weight: 800;
+  line-height: 72px;
+  transition: all 0.3s linear;
+}
+
+.cards.services .cards-card-image {
+  position: absolute;
+  right: -88px;
+  bottom: -88px;
+  width: 188px;
+  height: 188px;
+  border-radius: 50%;
+  background: var(--indigo-light);
+  transition: all 0.3s linear;
+}
+
+.cards.services .cards-card-image img {
+  position: absolute;
+  top: 42px;
+  left: 40px;
+  width: 35px;
+}
+
+.cards.services .cards-card-body {
+  position: relative;
+  z-index: 1;
+  font-size: 18px;
+  line-height: 33.75px;
+}
+
+.cards.services .cards-card-body h3 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  transition: all 0.3s linear;
+}
+
+.cards.services .cards-card-body p {
+  margin: 0;
+}
+
+.cards.services .cards-card-body a:any-link {
+  display: inline-block;
+  margin-top: 30px;
+  color: #989898;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 26.25px;
+}
+
+.cards.services > ul > li:hover {
+  background: #fff;
+  box-shadow: 15px 15px 38px 0 rgb(0 0 0 / 10%);
+  color: var(--text-color);
+}
+
+.cards.services > ul > li:hover .cards-card-watermark {
+  color: #f4f6f6;
+}
+
+.cards.services > ul > li:hover .cards-card-image {
+  background: var(--teal);
+}
+
+.cards.services > ul > li:hover h3 {
+  color: var(--heading-color);
+}
+
+@media (width >= 768px) {
+  .cards.services > ul {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* team (senior bankers): photo, name + role, contact tab sliding in on hover */
+.cards.team > ul {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.cards.team > ul > li {
+  margin: 10px;
+  background: var(--grey-light);
+  text-align: center;
+  transition: all 0.3s linear;
+}
+
+.cards.team .cards-card-image {
+  position: relative;
+}
+
+.cards.team .cards-card-contact {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cards.team .cards-card-contact a {
+  display: block;
+  padding: 23px 17px;
+  background: var(--indigo);
+  transform: translateX(100%);
+  transition: all 0.3s linear;
+  pointer-events: auto;
+}
+
+.cards.team .cards-card-contact a::before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 15px;
+  background-color: #9390a8;
+  mask: url('../../icons/user.svg') center / contain no-repeat;
+}
+
+.cards.team .cards-card-contact a:hover::before {
+  background-color: var(--accent-color);
+}
+
+.cards.team .cards-card-body {
+  padding: 25px 10px;
+}
+
+.cards.team .cards-card-body h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+.cards.team .cards-card-body h3 a:any-link {
+  color: var(--heading-color);
+}
+
+/* 26.25px inline span inside a 30px line on the source */
+.cards.team .cards-card-body p {
+  margin: 0;
+  padding: 1.875px 0;
+  color: #797979;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 26.25px;
+  text-transform: uppercase;
+}
+
+.cards.team > ul > li:hover {
+  background: #fff;
+  box-shadow: 15px 15px 38px 0 rgb(0 0 0 / 10%);
+}
+
+.cards.team > ul > li:hover .cards-card-contact a {
+  transform: translateX(0);
+}
+
+@media (width >= 768px) {
+  .cards.team > ul {
+    grid-template-columns: 1fr 1fr;
+  }
 }

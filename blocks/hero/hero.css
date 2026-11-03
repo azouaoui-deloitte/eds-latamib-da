@@ -1,37 +1,160 @@
-.hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
+/* Revolution Slider grid: the level is the smallest responsive level (1240/1024/778/480) strictly
+   wider than the viewport; its grid (1200/1024/768/480) scales down with the viewport, never up.
+   --u = 1 grid px; the values are the slider layer settings (xo/yo, dim, text size/line); the
+   slider rounds scaled text sizes to whole pixels. */
+.hero {
+  --u: calc(100vw / 480);
+  --gw: 480;
+  --gh: 600;
+  --top: 144;
+  --left: 39;
+  --w: 423;
+  --fs: 25;
+  --lh: 36;
+  --btop: 247;
+  --bleft: 6;
+  --bw: 135;
+  --bfs: 8;
+  --blh: 29;
+  --bh: 30;
+
+  position: relative;
+  height: calc(var(--gh) * var(--u));
+  overflow: hidden;
 }
 
-.hero {
-  position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+@media (width >= 480px) {
+  .hero {
+    --u: min(1px, 100vw / 768);
+    --gw: 768;
+    --gh: 630;
+    --top: 155;
+    --left: 15;
+    --w: 1009;
+    --fs: 48;
+    --lh: 52;
+    --btop: 267;
+    --bleft: -3;
+    --bw: 145;
+    --bfs: 9;
+    --blh: 31;
+    --bh: 32;
+  }
+}
+
+@media (width >= 778px) {
+  .hero {
+    --u: calc(100vw / 1024);
+    --gw: 1024;
+    --gh: 600;
+    --top: 85;
+    --left: 15;
+    --w: 1009;
+    --fs: 60;
+    --lh: 62;
+    --btop: 358.5;
+    --bleft: 1;
+    --bw: 194;
+    --bfs: 12;
+    --blh: 42;
+    --bh: 43;
+  }
+}
+
+@media (width >= 1024px) {
+  .hero {
+    --u: min(1px, 100vw / 1200);
+    --gw: 1200;
+    --gh: 620;
+    --top: 163;
+    --left: 19;
+    --w: 1145;
+    --fs: 50;
+    --lh: 80;
+    --btop: 314;
+    --bleft: 0;
+    --bw: 228;
+    --bfs: 15;
+    --blh: 50;
+    --bh: 51;
+  }
+}
+
+.hero .hero-image,
+.hero .hero-image > div,
+.hero .hero-image picture {
+  position: absolute;
+  inset: 0;
+}
+
+.hero .hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero .hero-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: calc(var(--gw) * var(--u));
+  margin-left: calc(var(--gw) * var(--u) / -2);
+}
+
+.hero .hero-content > div {
+  position: absolute;
+  top: calc(var(--top) * var(--u));
+  left: calc(var(--left) * var(--u));
+  width: calc(var(--w) * var(--u));
 }
 
 .hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+  margin: 0;
+  color: #fff;
+  font-family: var(--heading-font-family);
+  font-size: round(var(--fs) * var(--u), 1px);
+  font-weight: 900;
+  line-height: round(var(--lh) * var(--u), 1px);
 }
 
-.hero picture {
+.hero .button-wrapper {
   position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  top: calc(var(--btop) * var(--u));
+  left: calc(var(--bleft) * var(--u));
+  margin: 0;
+  line-height: 0;
 }
 
-.hero img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+.hero a.button.primary {
+  width: calc(var(--bw) * var(--u));
+  height: round(var(--bh) * var(--u), 1px);
+  padding: 0;
+  font-size: round(var(--bfs) * var(--u), 1px);
+  line-height: round(var(--blh) * var(--u), 1px);
+  transition: background-color 0.1s cubic-bezier(0.45, 0, 0.55, 1), filter 0.1s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
-@media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
+/* slider button hover (frame_hover: bgc #007aff, brightness 120%, 100ms power1.inOut) */
+.hero a.button.primary:hover {
+  filter: brightness(120%);
+}
+
+/* entrance (slider frames): the title is shown at once (chars speed 0), the button fades in from
+   1px left / 1px down (power2.inOut) */
+.hero.hero-animate .button-wrapper {
+  animation: hero-fade-in 2.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0.62s both;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-1px, 1px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
