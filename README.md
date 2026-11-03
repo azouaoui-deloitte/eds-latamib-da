@@ -1,5 +1,10 @@
-# Your Project's Title...
-Your project's description...
+# Latam IB — da.live site
+
+Home page of https://latamib.com/ migrated to Edge Delivery with Document Authoring
+(`azouaoui-deloitte/eds-latamib-da`). Blocks, styles and fonts are shared with the xwalk site
+[eds-latamib](https://github.com/azouaoui-deloitte/eds-latamib) (block map: `docs/migration/block-map.md`
+there). Documents: `/index` (home, served at `/`), `/nav`, `/footer`, sheets `/metadata.json`
+(nav / footer for `/**`) and `/redirects.json`. Edit: https://da.live/#/azouaoui-deloitte/eds-latamib-da
 
 ## Environments
 - Preview: https://main--eds-latamib-da--azouaoui-deloitte.aem.page/
