@@ -186,12 +186,25 @@ function decorateButtons(main) {
 }
 
 /**
+ * Keeps a word space before heading line breaks: the break is hidden on mobile, and the document
+ * pipeline drops the white space authored before a soft line break.
+ * @param {Element} main The container element
+ */
+function decorateLineBreaks(main) {
+  main.querySelectorAll('h1 br, h2 br, h3 br, h4 br, h5 br, h6 br').forEach((br) => {
+    const prev = br.previousSibling;
+    if (prev && prev.nodeType === Node.TEXT_NODE && !/\s$/.test(prev.textContent)) prev.textContent += ' ';
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   decorateIcons(main);
+  decorateLineBreaks(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
